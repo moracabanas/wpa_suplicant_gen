@@ -19,7 +19,7 @@ supplicant = [
     '}'
 ]
 
-def fileWrite():
+def file_write():
 
     f =  open("wpa_supplicant.conf", "w+")
     f.writelines(supplicant)
@@ -27,7 +27,7 @@ def fileWrite():
     myLabel = Label(root, text="File created!")
     myLabel.pack()
 
-myButton = Button(root, text="Generate", command=fileWrite)
+myButton = Button(root, text="Generate", command=file_write)
 myButton.pack()
 
 root.mainloop()
