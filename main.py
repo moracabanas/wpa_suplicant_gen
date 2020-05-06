@@ -1,6 +1,23 @@
 from tkinter import *
+import os
+# Handling icon from packed icon in .exe
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+# Then set root.iconbitmap(default=resource_path("icon.ico"))
+# last step is packing with the following command:
+#  pyinstaller --onefile --noconsole --icon=icon.ico main.py --add-data icon.ico;.
+
+########################################
 
 root = Tk() 
+root.title("Headless Generator")
+root.iconbitmap(default=resource_path("icon.ico"))
 
 Label(root, text="Insert your country code ie: US").pack()
 country = Entry(root)
