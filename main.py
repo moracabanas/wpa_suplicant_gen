@@ -41,13 +41,14 @@ password.grid(column=1, row=2, pady=6, padx=12)
 genButton = Button(root, text="Generate Files", command=lambda: update_write())
 genButton.grid(columnspan=2, sticky=N+S, pady=6)
 
+
 def write_file(lines, filename):
 
     f =  open(filename, "w+")
     f.writelines(lines)
     f.close()
-    myLabel = Label(root, text=f'{filename} created')
-    myLabel.pack()
+    createdLabel = Label(root, text=f'{filename} created')
+    createdLabel.grid(columnspan=2, sticky=N+S, pady=6)
 
 
 def update_write():
