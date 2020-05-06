@@ -37,6 +37,12 @@ password = Entry(root)
 password.grid(column=1, row=2, pady=6, padx=12)
 ########################
 
+# SSH checkbox
+
+ssh_state = BooleanVar()
+ssh_checkbox = Checkbutton(root, text="Enable SSH", variable=ssh_state)
+ssh_checkbox.grid(columnspan=2, sticky=N+S, pady=6)
+
 
 genButton = Button(root, text="Generate Files", command=lambda: update_write())
 genButton.grid(columnspan=2, sticky=N+S, pady=6)
@@ -66,7 +72,10 @@ def update_write():
         '}'
     ]
 
-    #call the write function
+    # call the write function
     write_file(supplicant, "wpa_supplicant.conf")
+
+    if(ssh_state.get()): # Create SSH file if checkbox enabled
+        write_file('', "SSH")
 
 root.mainloop()
