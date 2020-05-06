@@ -19,11 +19,27 @@ root = Tk()
 root.title("Headless Generator")
 root.iconbitmap(default=resource_path("icon.ico"))
 
-Label(root, text="Insert your country code ie: US").pack()
+# Labels and Text entry
+countryLabel = Label(root, text="Country code")
+countryLabel.grid(column=0, row=0, pady=6, padx=12)
 country = Entry(root)
-country.pack()
-ssid = "2.4Ghz"
-password = "4058520201"
+country.insert(0, "US")
+country.grid(column=1, row=0, pady=6, padx=12)
+
+ssidLabel = Label(root, text="Network SSID ")
+ssidLabel.grid(column=0, row=1, pady=6, padx=12)
+ssid = Entry(root)
+ssid.grid(column=1, row=1, pady=6, padx=12)
+
+passwordLabel = Label(root, text="Network password")
+passwordLabel.grid(column=0, row=2, pady=6, padx=12)
+password = Entry(root)
+password.grid(column=1, row=2, pady=6, padx=12)
+########################
+
+
+genButton = Button(root, text="Generate Files", command=lambda: update_write())
+genButton.grid(columnspan=2, sticky=N+S, pady=6)
 
 def write_file(lines, filename):
 
