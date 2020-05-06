@@ -15,7 +15,7 @@ def resource_path(relative_path):
 
 ########################################
 
-root = Tk() 
+root = Tk()
 root.title("Headless Generator")
 root.iconbitmap(default=resource_path("icon.ico"))
 
@@ -52,7 +52,8 @@ def write_file(lines, filename):
 
 
 def update_write():
-    #first update array
+    # Array should be initialized at write file calling
+    # to get it properly filled with fext fields
     supplicant = [
         f'country={country.get()}\n',
         'update_config=1\n',
@@ -60,16 +61,12 @@ def update_write():
         '\n'
         'network={\n',
         #'scan_ssid=1\n',
-        f'  ssid="{ssid}"\n',
-        f'  psk="{password}"\n',
+        f'  ssid="{ssid.get()}"\n',
+        f'  psk="{password.get()}"\n',
         '}'
     ]
 
     #call the write function
     write_file(supplicant, "wpa_supplicant.conf")
-
-
-genButton = Button(root, text="Generate Files", command=lambda: update_write())
-genButton.pack()
 
 root.mainloop()
