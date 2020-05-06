@@ -1,5 +1,6 @@
 from tkinter import *
 import os
+
 # Handling icon from packed icon in .exe
 def resource_path(relative_path):
     try:
@@ -12,7 +13,7 @@ def resource_path(relative_path):
 # Then set root.iconbitmap(default=resource_path("icon.ico"))
 # last step is packing with the following command:
 #  pyinstaller --onefile --noconsole --icon=icon.ico main.py --add-data icon.ico;.
-
+# icon source https://icon-icons.com/icon/raspberry-food/68696
 ########################################
 
 root = Tk()
