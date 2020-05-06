@@ -38,12 +38,11 @@ password.grid(column=1, row=2, pady=6, padx=12)
 ########################
 
 # SSH checkbox
-
 ssh_state = BooleanVar()
 ssh_checkbox = Checkbutton(root, text="Enable SSH", variable=ssh_state)
 ssh_checkbox.grid(columnspan=2, sticky=N+S, pady=6)
 
-
+# Button
 genButton = Button(root, text="Generate Files", command=lambda: update_write())
 genButton.grid(columnspan=2, sticky=N+S, pady=6)
 
