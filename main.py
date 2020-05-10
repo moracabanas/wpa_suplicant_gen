@@ -1,11 +1,11 @@
 from tkinter import *
 import os
-import resources_helper as rh
+from resources_helper import *
 
 
 root = Tk()
 root.title("Headless Generator")
-root.iconbitmap(default=rh.resource_path("icon.ico"))
+root.iconbitmap(default=resource_path("icon.ico"))
 
 # Labels and Text entry
 countryLabel = Label(root, text="Country code")
