@@ -38,7 +38,7 @@ genButton.grid(columnspan=2, sticky=N+S, pady=6)
 def write_file(lines, filename):
 
     f =  open(filename, "w+")
-    f.writelines(lines)
+    f.writelines(lines) if type(list) == list else f.write(lines) # Compatible with \n formated array or multiline f-string
     f.close()
     createdLabel = Label(root, text=f'{filename} created')
     createdLabel.grid(columnspan=2, sticky=N+S, pady=6)
@@ -47,17 +47,18 @@ def write_file(lines, filename):
 def update_write():
     # Array should be initialized at write file calling
     # to get it properly filled with fext fields
-    supplicant = [
-        f'country={country.get()}\n',
-        'update_config=1\n',
-        'ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n',
-        '\n'
-        'network={\n',
-        #'scan_ssid=1\n',
-        f'  ssid="{ssid.get()}"\n',
-        f'  psk="{password.get()}"\n',
-        '}'
-    ]
+    supplicant = f"""\
+\
+country={country.get()}
+update_config=1
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+
+network={{
+    ssid="{ssid.get()}"
+    psk="{password.get()}"
+}}
+\
+""" # Trying to get a decent multiline f-string
 
     # call the write function
     write_file(supplicant, "wpa_supplicant.conf")
