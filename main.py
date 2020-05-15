@@ -31,8 +31,23 @@ ssh_checkbox = Checkbutton(root, text="Enable SSH", variable=ssh_state)
 ssh_checkbox.grid(columnspan=2, sticky=N+S, pady=6)
 
 # Button
-genButton = Button(root, text="Generate Files", command=lambda: update_write())
+genButton = Button(root, text="Generate Files", command=lambda: write_files())
 genButton.grid(columnspan=2, sticky=N+S, pady=6)
+
+def getSupplicant():
+    # Array should be initialized at write file calling
+    # to get it properly filled with fext fields
+    supplicant = f"""\
+country={country.get()}
+update_config=1
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+
+network={{
+    ssid="{ssid.get()}"
+    psk="{password.get()}"
+}}
+"""
+    return supplicant
 
 
 def write_file(lines, filename):
@@ -44,26 +59,9 @@ def write_file(lines, filename):
     createdLabel.grid(columnspan=2, sticky=N+S, pady=6)
 
 
-def update_write():
-    # Array should be initialized at write file calling
-    # to get it properly filled with fext fields
-    supplicant = f"""\
-\
-country={country.get()}
-update_config=1
-ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
-
-network={{
-    ssid="{ssid.get()}"
-    psk="{password.get()}"
-}}
-\
-""" # Trying to get a decent multiline f-string
-
-    # call the write function
-    write_file(supplicant, "wpa_supplicant.conf")
-
-    if(ssh_state.get()): # Create SSH file if checkbox enabled
-        write_file('', "SSH")
+def write_files():
+    # call the write function for all files
+    write_file(getSupplicant(), "wpa_supplicant.conf")
+    write_file('', "SSH") if (ssh_state.get()) else NONE # Create SSH file if checkbox enabled
 
 root.mainloop()
