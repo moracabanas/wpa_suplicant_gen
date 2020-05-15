@@ -62,6 +62,6 @@ def write_file(lines, filename):
 def write_files():
     # call the write function for all files
     write_file(getSupplicant(), "wpa_supplicant.conf")
-    write_file('', "SSH") if (ssh_state.get()) else NONE # Create SSH file if checkbox enabled
+    write_file('', "SSH") if (ssh_state.get()) else None # Create SSH file if checkbox enabled
 
 root.mainloop()
