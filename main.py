@@ -52,9 +52,8 @@ network={{
 
 def write_file(lines, filename):
 
-    f =  open(filename, "w+")
-    f.writelines(lines) if type(list) == list else f.write(lines) # Compatible with \n formated array or multiline f-string
-    f.close()
+    with open(filename, "w+") as f:
+        f.writelines(lines) if type(list) == list else f.write(lines) # Compatible with \n formated array or multiline f-string
     createdLabel = Label(root, text=f'{filename} created')
     createdLabel.grid(columnspan=2, sticky=N+S, pady=6)
 
