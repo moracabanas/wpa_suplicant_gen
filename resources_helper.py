@@ -10,9 +10,12 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-# import resource_helper as rh
-# Then set root.iconbitmap(default=rh.resource_path("icon.ico"))
-# last step is packing the .exe with the following command:
-#  pyinstaller --onefile --noconsole --icon=icon.ico main.py --add-data icon.ico;.
+# Easy usage:
+# from resources_helper import *    <-- Use this import on your main
+# Then set root.iconbitmap(default=resource_path("icon.ico"))
+# Pack the .exe with the following command on your terminal:
+# 'python build.py' it reads your os platform to run the adecuate build script for yout system
+
+# ### More info ###
+# https://stackoverflow.com/questions/7674790/bundling-data-files-with-pyinstaller-onefile/44352931#44352931
 # icon source https://icon-icons.com/icon/raspberry-food/68696
-########################################
