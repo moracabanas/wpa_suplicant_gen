@@ -10,9 +10,9 @@ def resource_path(relative_path):
 
     return os.path.join(base_path, relative_path)
 
-# Easy usage:
+# Easy usage example:
 # from resources_helper import *    <-- Use this import on your main
-# Then set root.iconbitmap(default=resource_path("icon.ico"))
+# Then set root.iconbitmap(default=resource_path("icon.ico")) /// on this excample root = Tk()
 # Pack the .exe with the following command on your terminal:
 # 'python build.py' it reads your os platform to run the adecuate build script for yout system
 
